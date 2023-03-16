@@ -29,6 +29,7 @@ public class JdbcDemo {
                 " \nMin Invoice Amount: $" + minInvoiceAmount +
                 " \nPercent Difference: %" + percentDifference
                 );
+
         ap.close();
     }
 }
