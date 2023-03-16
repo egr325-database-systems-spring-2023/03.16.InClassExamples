@@ -28,7 +28,7 @@ else:
     mycursor = apConnection.cursor()
 
     vendorInitial = "I"
-    # # vendorInitial = "N%' OR 1=1 -- "    # SQL Injection Examples
+    # vendorInitial = "N%' OR 1=1 -- "    # SQL Injection Examples
 
     sqlString = "SELECT * FROM vendors WHERE vendor_name LIKE '" + vendorInitial + "%'"
     print(sqlString)

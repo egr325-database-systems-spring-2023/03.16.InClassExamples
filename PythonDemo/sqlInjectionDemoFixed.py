@@ -73,9 +73,9 @@ else:
     password = 'password'
     print("Authenticate " + user + "/" + password + " returns " + str(ap.authenticate(user, password)))
 
-    user = 'x'    # sql injection attack
-    password = "x' OR '1'='1' -- "
-    print("Authenticate " + user + "/" + password + " returns " + str(ap.authenticate(user, password)))
+    # user = 'x'    # sql injection attack
+    # password = "x' OR '1'='1' -- "
+    # print("Authenticate " + user + "/" + password + " returns " + str(ap.authenticate(user, password)))
 
     ap.close()
 
