@@ -8,8 +8,12 @@ class DBConnection:
     # BAD - do NOT do this
     def authenticate(self, username: str, password: str) -> bool:
         with self.connection.cursor(buffered=True) as cursor:
-            adminQuery = "SELECT * FROM users WHERE username = \'" + username + "\' AND password = \'" + password + "\'"
-            cursor.execute(adminQuery)
+            # Use a Parameterized Query
+            adminQuery = ("""SELECT * FROM users WHERE username = %s AND password = %s""")
+            cursor.execute(adminQuery, (username, password))
+
+            # adminQuery = ("""SELECT * FROM users WHERE username = %(username)s AND password = %(password)s""")
+            # cursor.execute(adminQuery,{'username':username,'password':password})
 
             result = cursor.fetchone()
 
@@ -69,9 +73,9 @@ else:
     password = 'password'
     print("Authenticate " + user + "/" + password + " returns " + str(ap.authenticate(user, password)))
 
-    # user = 'x'    # sql injection attack
-    # password = "x' OR '1'='1' -- "
-    # print("Authenticate " + user + "/" + password + " returns " + str(ap.authenticate(user, password)))
+    user = 'x'    # sql injection attack
+    password = "x' OR '1'='1' -- "
+    print("Authenticate " + user + "/" + password + " returns " + str(ap.authenticate(user, password)))
 
     ap.close()
 
